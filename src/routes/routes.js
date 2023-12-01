@@ -1,7 +1,8 @@
 const ROUTES = {
     HOME: '/HOME',
     LOGIN: '/',
-SIGNUP: '/SIGNUP'
+SIGNUP: '/SIGNUP',
+BIZMAN: '/BIZMAN'
 }
 
 export default ROUTES;

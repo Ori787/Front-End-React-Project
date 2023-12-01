@@ -218,6 +218,16 @@ export default function Navbar() {
             SIGNUP
           </Typography>
           </Link>
+          <Link to={ROUTES.BIZMAN}>
+          <Typography
+            variant="h7"
+            noWrap
+            component="div"
+            sx={{ display: { xs: 'none', sm: 'block', marginLeft:50 } }}
+          >
+            Business Management
+          </Typography>
+          </Link>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">

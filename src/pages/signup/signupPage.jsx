@@ -12,7 +12,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Registration from '../services/registration';
+import Registration from './registration';
+
 
 
 
@@ -21,7 +22,7 @@ function Copyright(props) {
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        MyBiz
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -34,8 +35,8 @@ const defaultTheme = createTheme();
 
 export default function SignUp() {
 
-const {myFormState, handleInputsChange, handleMysubmit} = Registration();
-const {userData, setUserData} = myFormState();
+  const { inputsValue, handleInputsChange, handleMysubmit, handleBusinessCheckboxChange } = Registration();
+
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -64,9 +65,21 @@ const {userData, setUserData} = myFormState();
                   required
                   fullWidth
                   id="first"
-                  value={userData.name.first}
+                  value={inputsValue.first}
                   onChange={handleInputsChange}
                   label="first"
+                  autoFocus
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  autoComplete="middle-name"
+                  name="middle"
+                  fullWidth
+                  id="middle"
+                  value={inputsValue.middle}
+                  onChange={handleInputsChange}
+                  label="middle"
                   autoFocus
                 />
               </Grid>
@@ -75,7 +88,7 @@ const {userData, setUserData} = myFormState();
                   required
                   fullWidth
                   id="last"
-                  value={userData.name.last}
+                  value={inputsValue.last}
                   onChange={handleInputsChange}
                   label="Last Name"
                   name="lastName"
@@ -88,7 +101,7 @@ const {userData, setUserData} = myFormState();
                   fullWidth
                   id="email"
                   onChange={handleInputsChange}
-                  value={userData.email}
+                  value={inputsValue.email}
                   label="Email Address"
                   name="email"
                   autoComplete="email"
@@ -100,7 +113,7 @@ const {userData, setUserData} = myFormState();
                   fullWidth
                   name="password"
                   onChange={handleInputsChange}
-                  value={userData.password}
+                  value={inputsValue.password}
                   label="Password"
                   type="password"
                   id="password"
@@ -113,7 +126,7 @@ const {userData, setUserData} = myFormState();
                   fullWidth
                   id="phone"
                   onChange={handleInputsChange}
-                  value={userData.phone}
+                  value={inputsValue.phone}
                   label="phone"
                   name="phone"
                   autoComplete="phone"
@@ -124,34 +137,31 @@ const {userData, setUserData} = myFormState();
               </Typography>
               <Grid item xs={12}>
                 <TextField
-                  required
                   fullWidth
-                  id="url"
-                  onChange={handleInputsChange}
-                  value={userData.image.url}
-                  label="url"
                   name="url"
+                  label="url"
+                  id="url"
                   autoComplete="url"
+                  onChange={handleInputsChange}
+                  value={inputsValue.url}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
                   fullWidth
                   id="alt"
                   label="alt"
                   onChange={handleInputsChange}
-                  value={userData.image.alt}
+                  value={inputsValue.alt}
                   name="alt"
                   autoComplete="alt"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
                   fullWidth
                   id="state"
-                  value={userData.address.state}
+                  value={inputsValue.state}
                   label="state"
                   name="state"
                   onChange={handleInputsChange}
@@ -164,7 +174,7 @@ const {userData, setUserData} = myFormState();
                   fullWidth
                   id="country"
                   onChange={handleInputsChange}
-                  value={userData.address.country}
+                  value={inputsValue.country}
                   label="country"
                   name="country"
                   autoComplete="country"
@@ -175,7 +185,7 @@ const {userData, setUserData} = myFormState();
                   required
                   fullWidth
                   id="city"
-                  value={userData.address.city}
+                  value={inputsValue.city}
                   label="city"
                   name="city"
                   onChange={handleInputsChange}
@@ -188,7 +198,7 @@ const {userData, setUserData} = myFormState();
                   fullWidth
                   id="street"
                   onChange={handleInputsChange}
-                  value={userData.address.street}
+                  value={inputsValue.street}
                   label="street"
                   name="street"
                   autoComplete="street"
@@ -200,7 +210,7 @@ const {userData, setUserData} = myFormState();
                   fullWidth
                   id="houseNumber"
                   onChange={handleInputsChange}
-                  value={userData.address.houseNumber}
+                  value={inputsValue.houseNumber}
                   label="houseNumber"
                   name="houseNumber"
                   autoComplete="houseNumber"
@@ -212,25 +222,19 @@ const {userData, setUserData} = myFormState();
                   fullWidth
                   id="zip"
                   onChange={handleInputsChange}
-                  value={userData.address.zip}
+                  value={inputsValue.zip}
                   label="zip"
                   name="zip"
                   autoComplete="zip"
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="isBusiness"
-                  onChange={handleInputsChange}
-                  value={userData.isBusiness}
-                  label="isBusiness"
-                  name="isBusiness"
-                  autoComplete="isBusiness"
-                />
-              </Grid>
-            </Grid>
+            <FormControlLabel
+              control={<Checkbox value={inputsValue.isBusiness} onChange={handleBusinessCheckboxChange} color="primary" />}
+              label="Business Account"
+            />
+          </Grid>
+        </Grid>
             <Button
               type="submit"
               fullWidth

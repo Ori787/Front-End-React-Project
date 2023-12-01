@@ -11,8 +11,9 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import ROUTES from '../routes/routes';
+import ROUTES from '../../routes/routes';
 import { Link } from 'react-router-dom';
+import LoginLogic from './login';
 
 
 
@@ -33,14 +34,8 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignInSide() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+  
+const { loginValue, handleLoginInputs, HandleLoginSubmit } = LoginLogic();
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -76,13 +71,15 @@ export default function SignInSide() {
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+            <Box component="form" noValidate onSubmit={HandleLoginSubmit} sx={{ mt: 1 }}>
               <TextField
                 margin="normal"
                 required
                 fullWidth
                 id="email"
                 label="Email Address"
+                value={loginValue.email}
+                onChange={handleLoginInputs}
                 name="email"
                 autoComplete="email"
                 autoFocus
@@ -93,6 +90,8 @@ export default function SignInSide() {
                 fullWidth
                 name="password"
                 label="Password"
+                value={loginValue.password}
+                onChange={handleLoginInputs}
                 type="password"
                 id="password"
                 autoComplete="current-password"
