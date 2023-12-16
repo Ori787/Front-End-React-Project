@@ -1,19 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
-import Layout from './App Layout/layout';
-import MyCard from './components/cards';
-import HomePage from './pages/homepage';
-import Router from './routes/router';
-
-
-
+import "react-toastify/dist/ReactToastify.css";
+import LayoutComponent from "./App Layout/main/layoutcomp";
+import { ToastContainer } from "react-toastify";
+import Router from "./routes/router";
+import useAutoLogin from "./hooks/useAutoLogin";
+import { useEffect, useState } from "react";
+import { LinearProgress } from "@mui/material";
 
 const App = () => {
+  const [doneAuth, setDoneAuth] = useState(false);
+  const autoLogin = useAutoLogin();
+  useEffect(() => {
+    (async () => {
+      try {
+        await autoLogin();
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setDoneAuth(true);
+      }
+    })();
+  }, []);
   return (
-    <Layout>
-      <Router />
-    </Layout>
+    <LayoutComponent>
+      <ToastContainer />
+      {doneAuth ? <Router /> : <LinearProgress />}
+    </LayoutComponent>
   );
-}
+};
 
 export default App;

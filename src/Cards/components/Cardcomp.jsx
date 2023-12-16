@@ -14,8 +14,12 @@ import {
   import DeleteIcon from "@mui/icons-material/Delete";
   import FavoriteIcon from "@mui/icons-material/Favorite";
   import PropTypes from "prop-types";
-  
-  const CardComponent = ({
+  import { useState } from "react";
+  import {useNavigate} from "react-router-dom";
+  import ROUTES from "../../routes/routes";
+
+
+ const CardComponent = ({
     _id,
     title,
     subTitle,
@@ -25,15 +29,20 @@ import {
     alt,
     like,
     cardNumber,
-    onDeleteCard,
-    onEditCard,
+    onDeleteCardClick,
   }) => {
-    const handleDeleteCardClick = () => {
-      onDeleteCard(_id);
-    };
-    const handleClickEditCard = () => {
-      onEditCard(_id);
-    };
+
+    const navigate = useNavigate()
+
+   
+
+    const [didClick, setDidClick] = useState(false);
+
+    const HandleClickEditCard = () => {
+
+        setDidClick(true);
+        navigate(ROUTES.EDITCARD, {state : { id: _id }})};
+    
     return (
       <Card>
         <CardActionArea>
@@ -67,12 +76,12 @@ import {
               <IconButton>
                 <PhoneIcon />
               </IconButton>
-              <IconButton onClick={handleClickEditCard}>
+              <IconButton onClick={HandleClickEditCard}>
                 <CreateIcon />
               </IconButton>
             </Box>
             <Box>
-              <IconButton onClick={handleDeleteCardClick}>
+              <IconButton onClick={onDeleteCardClick}>
                 <DeleteIcon />
               </IconButton>
               <IconButton>
@@ -95,12 +104,12 @@ import {
     alt: PropTypes.string,
     like: PropTypes.bool,
     cardNumber: PropTypes.number,
-    onDeleteCard: PropTypes.func.isRequired,
-    onEditCard: PropTypes.func.isRequired,
+    onDeleteCardClick: PropTypes.func.isRequired,
   };
   CardComponent.defaultProps = {
     img: "https://www.livemint.com/lm-img/img/2023/08/14/1600x900/garena_free_fire_max_1688877791610_1691982307589.jpg",
     alt: "running",
-  };
-  
+  }
+
   export default CardComponent;
+

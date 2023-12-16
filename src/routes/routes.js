@@ -1,8 +1,10 @@
 const ROUTES = {
+    SPEC: '/',
     HOME: '/HOME',
-    LOGIN: '/',
+    LOGIN: '/LOGIN',
 SIGNUP: '/SIGNUP',
-BIZMAN: '/BIZMAN'
+NEWCARD: '/NEWCARD',
+EDITCARD: '/EDITCARD'
 }
 
 export default ROUTES;

@@ -3,11 +3,19 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/routes";
 import Registration from "../signup/registration";
+import {useDispatch} from "react-redux";
+import { authActions } from "../../store/authSlice";
+import store from "../../store/bigPie";
+import { jwtDecode } from "jwt-decode";
+import { storeToken } from "../../services/storageService";
+
 
 
 const LoginLogic = () => {
 
 const {inputsValue} = Registration()
+
+const dispatch = useDispatch();
 
     const navigate = useNavigate()
 
@@ -23,15 +31,30 @@ const handleLoginInputs = (e) => {
     }));
 };
 
+const [rememberMe, setRememberMe] = useState(true);
+
+
 const HandleLoginSubmit = async (e) => {
     const loginURL = "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users/login"
     const request = loginValue;
     try {
         e.preventDefault()
 const {data} = await axios.post(loginURL, request)
-if(inputsValue.isBusiness) {navigate(ROUTES.BIZMAN)}
-else {navigate(ROUTES.HOME)}
-console.log("data", data)
+
+const decodedToken = jwtDecode(data)
+
+if(data) {
+ storeToken(data,rememberMe)
+
+    dispatch(authActions.login(decodedToken))
+
+    console.log("data", data)
+
+}
+if(decodedToken.isBusiness) {navigate(ROUTES.HOME)} 
+else {
+navigate(ROUTES.SPEC)
+}
     } catch (err) {
 console.log(err)
 alert("Oops... something went wrong!");
@@ -42,3 +65,4 @@ return { loginValue, handleLoginInputs, HandleLoginSubmit };
 };
 
 export default LoginLogic;
+

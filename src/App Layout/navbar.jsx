@@ -11,13 +11,17 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import AccountCircle from '@mui/icons-material/AccountCircle';
+import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import ROUTES from '../routes/routes';
+import myLinks, {loggedInLinks,specLinks,alwaysLinks} from './navLinks';
+import Links from './links';
+import nextKey from "generate-my-key";
+import { useState } from 'react';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -50,7 +54,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
@@ -59,13 +62,16 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
+ const Navbar = ({ isDarkTheme, onThemeChange }) => {
 
-export default function Navbar() {
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -151,7 +157,7 @@ export default function Navbar() {
           aria-haspopup="true"
           color="inherit"
         >
-          <AccountCircle />
+          <PermIdentityIcon />
         </IconButton>
         <p>Profile</p>
       </MenuItem>
@@ -159,8 +165,8 @@ export default function Navbar() {
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+    <Box sx={{ flexGrow: 1}}>
+      <AppBar position="static" sx={{backgroundColor: 'black'}}>
         <Toolbar>
           <IconButton
             size="large"
@@ -175,10 +181,12 @@ export default function Navbar() {
             variant="h6"
             noWrap
             component="div"
-            sx={{ display: { xs: 'none', sm: 'block' } }}
+            sx={{ display: { xs: 'none', sm: 'block'} }}
           >
             MyBiz
           </Typography>
+          <Links />
+          <Box sx={{ml: 103, position: 'absolute'}}>
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -188,46 +196,7 @@ export default function Navbar() {
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
-          <Link to={ROUTES.HOME}>
-          <Typography
-            variant="h7"
-            noWrap
-            component="div"
-            sx={{ display: { xs: 'none', sm: 'block', marginLeft:50 } }}
-          >
-            HOME
-          </Typography>
-          </Link>
-          <Link to={ROUTES.LOGIN}>
-          <Typography
-            variant="h7"
-            noWrap
-            component="div"
-            sx={{ display: { xs: 'none', sm: 'block', marginLeft:50} }}
-          >
-            LOGIN
-          </Typography>
-          </Link>
-          <Link to={ROUTES.SIGNUP}>
-          <Typography
-            variant="h7"
-            noWrap
-            component="div"
-            sx={{ display: { xs: 'none', sm: 'block', marginLeft:50 } }}
-          >
-            SIGNUP
-          </Typography>
-          </Link>
-          <Link to={ROUTES.BIZMAN}>
-          <Typography
-            variant="h7"
-            noWrap
-            component="div"
-            sx={{ display: { xs: 'none', sm: 'block', marginLeft:50 } }}
-          >
-            Business Management
-          </Typography>
-          </Link>
+          </Box>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">
@@ -253,7 +222,7 @@ export default function Navbar() {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <AccountCircle />
+              <PermIdentityIcon/>
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
@@ -275,3 +244,5 @@ export default function Navbar() {
     </Box>
   );
 }
+
+export default Navbar;

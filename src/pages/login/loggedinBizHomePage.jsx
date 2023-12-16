@@ -2,12 +2,14 @@ import React, { useEffect } from 'react';
 import axios from "axios";
 import { useState } from 'react';
 import { Container, Grid } from "@mui/material";
-import CardComponent from '../../components/Cardcomp';
+import CardComponent from '../../Cards/components/Cardcomp';
+import ReactPaginate from 'react-paginate';
+import { HandshakeOutlined } from '@mui/icons-material';
+import { getToken } from '../../services/storageService';
+import { jwtDecode } from 'jwt-decode';
 
 
 const LoggedinBizHomePage = () => {
-
-  const [cards, setCards] = useState([])
 
   useEffect(() => {
   const cardURL = "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards"
@@ -18,6 +20,31 @@ const LoggedinBizHomePage = () => {
     console.error("Something went wrong with getting the cards", error);
   });
 }, [])
+
+const [cards, setCards] = useState([]);
+
+  const onDeleteCardClick = async (_id) => {
+    const myURL = `https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards/${_id}`;
+
+    const deleteToken = getToken();
+
+   try {
+    const response = await axios.delete(myURL, {
+      headers: {
+        "Content-Type": "application/json",
+      'x-auth-token':`${deleteToken}`  
+      }
+    })
+
+    if(response.status === 200) {
+      setCards((prevCards)=>prevCards.filter((card) => card._id !== _id))
+    }}
+
+ catch (err) {
+console.error("An error occured while trying to delete this card")
+    }
+  };
+
 
 return (
   <Container>
@@ -34,6 +61,7 @@ return (
           alt={card.image.alt}
           like={card.likes}
           cardNumber={card.cardNumber}
+          onDeleteCardClick={onDeleteCardClick}
 />
         </Grid>
       ))}
@@ -42,5 +70,5 @@ return (
 );
 };
 
-
 export default LoggedinBizHomePage;
+

@@ -1,6 +1,8 @@
-
 import React from 'react';
-import MyCard from '../components/cards';
+import MyCard from '../Cards/components/cards';
+import { Grid } from '@mui/material';
+import { Container } from '@mui/material';
+
 
 const HomePage = () => {
 
@@ -20,16 +22,20 @@ const HomePage = () => {
    
 
   return (
-  <>
+    <Container>
+    <Grid container spacing={10} justifyContent={'center'}>
   {cardList.map((card) => (
-    <MyCard sx={{}}
+    <Grid item key={card.id} xs={12} sm={6} md={4} lg={3}>
+    <MyCard 
     key={card.id}
     image={card.image}
     description={card.description}
     title={card.title}
      />
+     </Grid>
   ))}
-  </>
+  </Grid>
+</Container>
   );
 }
 
