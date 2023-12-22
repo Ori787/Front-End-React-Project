@@ -3,8 +3,13 @@ import axios from "axios";
 import LoginLogic from "../pages/login/login";
 import ValidateNewCard from "../validation/newCardandEditCardJoi";
 import NormalizeNewCard from "../normalizeNewCardandEditCard";
+import { getToken } from "../services/storageService";
+import { useNavigate } from "react-router-dom";
+import ROUTES from "../routes/routes";
 
 const NewCard = () => {
+
+    const navigate = useNavigate();
 
     const [cardInput, setCardInput] = useState({
         title:"",
@@ -38,7 +43,8 @@ try {
 
 const cardCreationURL = "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards"
 
-const Mytoken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTQyNGFlOWE4ZDFlYWUxMmQzMWUzNjAiLCJpc0J1c2luZXNzIjp0cnVlLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNjk4ODQzNDQyfQ.znXbzyxMKeNrKf3dA8jXQ5CFptM8-iXjeFtqx3XfHD0";
+const Mytoken = getToken();
+
 const errors = ValidateNewCard(cardInput);
 console.log(errors)
     if (errors) return;
@@ -49,6 +55,9 @@ const create = await axios.post(cardCreationURL, request, {
     }
 });
 console.log("data", create.data);
+if (create) {
+    navigate(ROUTES.HOME)
+}
 } catch (err) {
 console.error('something went wrong!', err)
 }

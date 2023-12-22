@@ -22,6 +22,7 @@ import myLinks, {loggedInLinks,specLinks,alwaysLinks} from './navLinks';
 import Links from './links';
 import nextKey from "generate-my-key";
 import { useState } from 'react';
+import Switch from '@mui/material/Switch';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -72,6 +73,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
+  const label = { inputProps: { 'aria-label': 'Color switch demo' } };
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -89,6 +91,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+
+  const handleThemeChange = (event) => {
+    onThemeChange(event.target.checked);
+  };
+
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -175,7 +182,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
             aria-label="open drawer"
             sx={{ mr: 2 }}
           >
-            <MenuIcon />
+            <MenuIcon>
+              <IconButton
+              onClick={handleMobileMenuOpen}
+              />
+            </MenuIcon>
           </IconButton>
           <Typography
             variant="h6"
@@ -197,6 +208,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
             />
           </Search>
           </Box>
+          <Switch checked={isDarkTheme} onChange={handleThemeChange} sx={{ml:-50}}/>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">

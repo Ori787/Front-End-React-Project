@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { darkThemeActions } from "../../store/darkThemeSlice";
 
 const LayoutComponent = ({ children }) => {
-  // const [isDarkTheme, setIsDarkTheme] = useState(false);
   const isDarkTheme = useSelector((bigPie) => bigPie.darkThemeSlice.darkTheme);
   const dispatch = useDispatch();
 
@@ -37,6 +36,7 @@ const LayoutComponent = ({ children }) => {
       <FooterComponent />
     </ThemeProvider>
   );
+  return {themes}
 };
 
 export default LayoutComponent;

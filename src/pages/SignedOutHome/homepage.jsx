@@ -1,5 +1,5 @@
 import React from 'react';
-import MyCard from '../Cards/components/cards';
+import MyCard from '../../Cards/components/cards';
 import { Grid } from '@mui/material';
 import { Container } from '@mui/material';
 
@@ -11,7 +11,7 @@ const HomePage = () => {
           id: 1,
           image: "https://cdn.ferrari.com/cms/network/media/img/resize/62e245f5771eaa067937bd85-296gt3_intro-project_focus-1-resize?",
           title: "Ferrari",
-          description: "Ferrari S.p.A. is an Italian luxury sports car manufacturer based in Maranello, Italy. Founded in 1939 by Enzo Ferrari, the company built its first car in 1940, adopted its current name in 1945, and began to produce its current line of road cars in 1947."
+          description: "Ferrari S.p.A. is an Italian luxury sports car manufacturer based in Maranello, Italy. Founded in 1939 by Enzo Ferrari, the company built its first car in 1940."
         },
         {
           id: 2,
