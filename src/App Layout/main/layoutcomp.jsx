@@ -36,7 +36,6 @@ const LayoutComponent = ({ children }) => {
       <FooterComponent />
     </ThemeProvider>
   );
-  return {themes}
 };
 
 export default LayoutComponent;

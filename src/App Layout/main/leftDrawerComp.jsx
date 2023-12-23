@@ -1,4 +1,3 @@
-// LeftDrawerComponent.js
 import React from 'react';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -24,6 +23,9 @@ const LeftDrawerComponent = ({ isOpen, onCloseDrawer }) => {
         </ListItem>
         <ListItem button component={Link} to="FAVCARDS" onClick={onCloseDrawer}>
           <ListItemText primary="Favorite Cards" />
+        </ListItem>
+        <ListItem button component={Link} to="ABOUT" onClick={onCloseDrawer}>
+          <ListItemText primary="About" />
         </ListItem>
       </List>
     </Drawer>

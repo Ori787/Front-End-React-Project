@@ -46,7 +46,6 @@ const cardCreationURL = "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/ca
 const Mytoken = getToken();
 
 const errors = ValidateNewCard(cardInput);
-console.log(errors)
     if (errors) return;
     let request = NormalizeNewCard(cardInput);
 const create = await axios.post(cardCreationURL, request, {
@@ -54,12 +53,11 @@ const create = await axios.post(cardCreationURL, request, {
         'x-auth-token': `${Mytoken}`
     }
 });
-console.log("data", create.data);
 if (create) {
     navigate(ROUTES.HOME)
 }
 } catch (err) {
-console.error('something went wrong!', err)
+alert("something went wrong!")
 }
 }
 return {cardInput, handleNewCardInputs, handleCardSubmit}

@@ -15,7 +15,6 @@ const FavCards = () => {
     const [cards, setCards] = useState([]);
 
     const onLikeClicked = async (_id) => {
-        console.log("Like button clicked for card ID:", _id);
         const URL = `https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards/${_id}`;
         const token = getToken();
         try{
@@ -25,7 +24,6 @@ const FavCards = () => {
                 }
             })
             if(response.status === 200) {
-                //setCards(prev => prev.filter(card => card._id !== _id))
                 setCards(prev => prev.map(card => {
                   if(card._id === _id) 
                   {

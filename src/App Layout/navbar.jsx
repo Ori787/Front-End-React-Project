@@ -15,15 +15,11 @@ import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
-import Button from '@mui/material/Button';
-import { Link } from 'react-router-dom';
-import ROUTES from '../routes/routes';
-import myLinks, {loggedInLinks,specLinks,alwaysLinks} from './navLinks';
 import Links from './links';
-import nextKey from "generate-my-key";
 import { useState } from 'react';
 import Switch from '@mui/material/Switch';
 import LeftDrawerComponent from './main/leftDrawerComp';
+import HandleLogout from './logout';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -66,6 +62,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
  const Navbar = ({ isDarkTheme, onThemeChange }) => {
 
+  const { handlelogout } = HandleLogout();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -125,6 +122,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={() => handlelogout()}>Logout</MenuItem>
     </Menu>
   );
 

@@ -14,7 +14,7 @@ const App = () => {
       try {
         await autoLogin();
       } catch (err) {
-        console.log(err);
+        alert("something went wrong");
       } finally {
         setDoneAuth(true);
       }

@@ -17,6 +17,7 @@ import Registration from './registration';
 
 
 
+
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -130,6 +131,7 @@ export default function SignUp() {
                   label="phone"
                   name="phone"
                   autoComplete="phone"
+                  helperText="phone must be a standard Israeli phone number"
                 />
               </Grid>
               <Typography>

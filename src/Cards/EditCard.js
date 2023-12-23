@@ -31,11 +31,9 @@ const handleEditCardInputs = (e) => {
  };
 
 const handleEditSubmit = async (e) => {
-    console.log( NormalizeNewCard(currInput))
     try {
         e.preventDefault()
         const errors = ValidateNewCard(currInput);
-        console.log(errors)
         if (errors) return
         let myReq = NormalizeNewCard(currInput)
     const EditCardURL = "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards/65424d35cb6bcb58697bab4a"

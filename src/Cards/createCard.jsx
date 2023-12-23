@@ -88,6 +88,7 @@ const defaultTheme = createTheme();
               value={cardInput.phone}
               onChange={handleNewCardInputs}
               autoComplete="phone"
+              helperText = "phone must be a standard Israeli phone number"
             />
              <TextField
               margin="normal"
@@ -100,6 +101,7 @@ const defaultTheme = createTheme();
               value={cardInput.email}
               onChange={handleNewCardInputs}
               autoComplete="email"
+              helperText = "email must be a standard email"
             />
              <TextField
               margin="normal"
@@ -111,6 +113,7 @@ const defaultTheme = createTheme();
               value={cardInput.web}
               onChange={handleNewCardInputs}
               autoComplete="web"
+              helperText = "web must be a standard URL"
             />
              <TextField
               margin="normal"
@@ -123,6 +126,7 @@ const defaultTheme = createTheme();
               value={cardInput.url}
               onChange={handleNewCardInputs}
               autoComplete="url"
+              helperText = "image/url must be a standard URL"
             />
              <TextField
               margin="normal"

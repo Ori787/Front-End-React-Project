@@ -46,14 +46,11 @@ const Registration = () => {
     try {
     e.preventDefault();
 const errors = validateSignUp(inputsValue);
-console.log(errors)
     if (errors) return;
     let request = normalizeSignup(inputsValue);
         const apiUrl = "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users";
      const {data} = await axios.post(apiUrl, request);
-      console.log("data", data)
     } catch (err) {
-      console.log(err)
       alert("Oops... something went wrong!");
     }
   }

@@ -83,6 +83,7 @@ const { loginValue, handleLoginInputs, HandleLoginSubmit } = LoginLogic();
                 name="email"
                 autoComplete="email"
                 autoFocus
+                helperText = "email must be a standard email"
               />
               <TextField
                 margin="normal"

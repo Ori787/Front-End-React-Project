@@ -48,15 +48,13 @@ if(data) {
 
     dispatch(authActions.login(decodedToken))
 
-    console.log("data", data)
-
 }
 if(decodedToken.isBusiness) {navigate(ROUTES.HOME)} 
 else {
 navigate(ROUTES.SPEC)
 }
     } catch (err) {
-console.log(err)
+alert("something went wrong")
 alert("Oops... something went wrong!");
     }
 }

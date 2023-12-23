@@ -90,6 +90,7 @@ import UpdateOutlinedIcon from '@mui/icons-material/UpdateOutlined';
                   value={currInput.phone}
                   onChange={handleEditCardInputs}
                   autoComplete="phone"
+                  helperText="phone must be a standard Israeli phone number"
                 />
                  <TextField
                   margin="normal"
@@ -102,6 +103,7 @@ import UpdateOutlinedIcon from '@mui/icons-material/UpdateOutlined';
                   value={currInput.email}
                   onChange={handleEditCardInputs}
                   autoComplete="email"
+                  helperText = "email must be a standard email"
                 />
                  <TextField
                   margin="normal"
@@ -113,6 +115,7 @@ import UpdateOutlinedIcon from '@mui/icons-material/UpdateOutlined';
                   value={currInput.web}
                   onChange={handleEditCardInputs}
                   autoComplete="web"
+                  helperText = "web must be a standard URL"
                 />
                  <TextField
                   margin="normal"
@@ -125,6 +128,7 @@ import UpdateOutlinedIcon from '@mui/icons-material/UpdateOutlined';
                   value={currInput.url}
                   onChange={handleEditCardInputs}
                   autoComplete="url"
+                  helperText = "image/url must be a standard URL"
                 />
                  <TextField
                   margin="normal"

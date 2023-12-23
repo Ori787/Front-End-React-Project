@@ -11,12 +11,14 @@ import BizGuard from "../Guard/BizGuard";
 import LoggedinBizHomePage from "./../pages/login/loggedinBizHomePage";
 import CardEditPage from "../Cards/components/cardEdit";
 import CreateNewCard from "../Cards/createCard";
+import AboutPage from "../Cards/components/aboutUs";
 
 
 const Router = () => {
   return (
     <Routes>
             <Route path={ROUTES.SPEC} element={<HomePage />} />
+            <Route path={ROUTES.ABOUT} element={<AboutPage />} />
                         <Route path={ROUTES.FAVCARDS} element={<FavCards />} />
       <Route path={ROUTES.SIGNUP} element={<RegisterPage />} />
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
