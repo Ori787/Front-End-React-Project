@@ -23,6 +23,7 @@ import Links from './links';
 import nextKey from "generate-my-key";
 import { useState } from 'react';
 import Switch from '@mui/material/Switch';
+import LeftDrawerComponent from './main/leftDrawerComp';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -94,6 +95,14 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
   const handleThemeChange = (event) => {
     onThemeChange(event.target.checked);
+  };
+
+
+  const handleOpenDrawerClick = () => {
+    setIsOpen(true);
+  };
+  const handleCloseDrawerClick = () => {
+    setIsOpen(false);
   };
 
 
@@ -181,12 +190,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
+            onClick={handleOpenDrawerClick}
           >
-            <MenuIcon>
-              <IconButton
-              onClick={handleMobileMenuOpen}
-              />
-            </MenuIcon>
+            <MenuIcon/>
           </IconButton>
           <Typography
             variant="h6"
@@ -253,6 +259,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
+      <LeftDrawerComponent
+        isOpen={isOpen}
+        onCloseDrawer={handleCloseDrawerClick}
+      />
     </Box>
   );
 }

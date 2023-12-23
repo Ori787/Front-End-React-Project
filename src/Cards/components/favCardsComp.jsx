@@ -76,7 +76,7 @@ const FavCards = () => {
         <Container>
             <Grid container spacing={8}>
                 {cards.map((card) => (
-                    <Grid item key={card._id} xs={3} sm={3} md={4} lg={4}>
+                    <Grid item key={card._id} xs={12} sm={3} md={4} lg={4}>
                         <CardComponent
                             _id={card._id}
                             title={card.title}

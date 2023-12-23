@@ -46,7 +46,7 @@ const submit = await axios.put(EditCardURL, currInput, {
 }
 })
 } catch (err) {
-console.error('Oops, Error!', err)
+alert("Oops, Error!")
 }}
 return {handleEditCardInputs, handleEditSubmit, currInput}
 }
