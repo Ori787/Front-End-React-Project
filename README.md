@@ -1,18 +1,18 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+Hello and welcome to my react module project.
 
-In the project directory, you can run:
+On this website, a registered business account can create (and update) a unique, online business card which will be presented to the website visitors. Moreover, you can click 'like' on another business cards and add them directly to your favourite cards page.
 
-### `npm start`
+you can run the project on your device in a few simple steps.
+
+First, in the terminal type this line: 'npm i'. this line will install the node_modules folder of my project.
+
+Now, when the installation is done, type 'npm start' in the terminal and it will open the project on your browser.
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
 ### `npm test`
 
